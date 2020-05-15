@@ -1,0 +1,11 @@
+LOG_FILE='/var/log/acme.sh.log'
+#LOG_LEVEL=1
+
+#AUTO_UPGRADE="1"
+
+#NO_TIMESTAMP=1
+
+# 一个定制的目录来保存您颁发的证书
+CERT_HOME='/root/cert'
+# 用于向Let's Encrypt注册帐户的电子邮件，您将在此处收到续订通知电子邮件。默认为空。
+# ACCOUNT_EMAIL=''

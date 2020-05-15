@@ -1,0 +1,26 @@
+version: '2.1'
+services:
+
+  letsencrypt:
+    image: mrxia/letsencrypt
+    container_name: letsencrypt
+    environment:
+      DOMAINS: ${DOMAINS}
+      DNS_API: ${DNS_API}
+      API_KEY: ${API_KEY}
+      API_SECRET: ${API_SECRET}
+      RELOAD_CMD: ${RELOAD_CMD}
+    volumes:
+      - ${EXPORT_CERT_PATH}:/root/export_cert
+      - ${CERT_PATH}:/root/cert
+      - ./acme.sh/account.conf:/root/.acme.sh/account.conf
+      - ${LOG_PATH}:/var/log
+      - /usr/local/bin/docker:/usr/local/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    networks:
+      - letsencrypt
+
+networks:
+  letsencrypt:
+    name: letsencrypt
