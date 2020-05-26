@@ -13,6 +13,10 @@ RUN set -xe \
     socat \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
+    && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
+    && wget -O glibc.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.31-r0/glibc-2.31-r0.apk \
+    && apk add --no-cache glibc.apk \
+    && rm -rf glibc.apk \
     && mkdir -p /root/cert /root/export_cert /root/shell \
     && git clone https://github.com/acmesh-official/acme.sh.git \
     && cd acme.sh \
